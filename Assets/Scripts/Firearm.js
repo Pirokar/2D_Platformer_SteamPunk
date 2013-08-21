@@ -27,27 +27,4 @@ function Update () {
 		empty = false;
 }
 
-function Fire() {
-	audio.PlayOneShot(gunfire);
-	nextFire = Time.time + fireRate;
-	var shot = Instantiate(Projectile, transform.position, Quaternion.identity);
-	shot.rigidbody.AddForce(transform.forward*3000);
-	Ammo--;
-}
-function Reload() {
-	audio.PlayOneShot(reload);
-	Ammo = 30;
-}
-
-function OnGUI(){
-	GUI.Box(Rect(Screen.width - 100,20,100,80),"");
-	GUI.Label(Rect(Screen.width - 100,35,90,20),"Ammo:" + Ammo);
-	GUI.Label(Rect(Screen.width - 100,20,90,20),"Health" + PlayerHealth.currentHealth);
-	
-	if(empty) {
-		GUI.contentColor = Color.red;
-		GUI.Label(Rect(Screen.width - 100,50,90,20),"RELOAD");
-	}
-}
-
-@script ExecuteInEditMode()
+function

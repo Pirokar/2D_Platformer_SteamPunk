@@ -1,5 +1,5 @@
 ﻿function Update () {
-	Destroy(gameObject,3);
+	Destroy(GameObject,3);
 }
 
 function OnTriggerEnter(other:Collider) {
@@ -7,4 +7,4 @@ function OnTriggerEnter(other:Collider) {
 		other.gameObject.SendMessage("OnDamage",null);
 		Destroy(gameObject);
 	}
-}	
+}
