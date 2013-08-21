@@ -1,5 +1,5 @@
 ﻿function Update () {
-	Destroy(GameObject,3);
+	Destroy(gameObject,3);
 }
 
 function OnTriggerEnter(other:Collider) {
