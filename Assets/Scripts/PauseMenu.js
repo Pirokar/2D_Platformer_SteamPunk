@@ -5,6 +5,7 @@ var weaponFireRate : float = 0.3;
 var elementalUpgrade : float = 0;
 var levelModifier : float = 1.1;
 var experience : int = 125;
+var experienceLimit = 155;
 var level : int = 1;
 var bool : boolean = false;
 var inven : boolean = false;
@@ -21,6 +22,12 @@ function Update() {
 			Time.timeScale = 1;
 			paused = false;
 		}
+	}
+	if(experience >= experienceLimit) {
+		levelUp = true;
+		level++;
+		experience = 0;
+		experienceLimit*=levelModifier;
 	}
 }
 
@@ -49,7 +56,7 @@ function OnGUI() {
 		}
 		
 		if(GUI.Button(Rect(10,110,100,30), "Inventory")) {
-			if(!bool)
+			if(!	bool)
 				bool = !bool;
 			inven = !inven;
 		}
@@ -59,6 +66,7 @@ function OnGUI() {
 		}
 		
 		if(GUI.Button(Rect(10,160,100,30), "Options")) {
+			Application.LoadLevel("Options");
 		}
 		if(GUI.Button(Rect(10,220,100,30), "Exit")) {
 		}

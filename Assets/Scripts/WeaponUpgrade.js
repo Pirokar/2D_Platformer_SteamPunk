@@ -2,14 +2,11 @@
 static var weaponFireRate : float = 0.3;
 static var elementalUpgrade : float = 0;
 static var levelModifier : float = 1.1;
-static var experience : int = 125;
+static var experience : int = 160;
+static var experienceLimit : int = 155;
 static var level : int = 1;
 static var levelUp : boolean = false;
 var bool : boolean = false;
-
-function Update () {
-	
-}
 
 function OnGUI() {
 	if(GUI.Button (Rect(Screen.width - 100,0,100,20), "Status")){
