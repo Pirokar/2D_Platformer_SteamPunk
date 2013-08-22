@@ -41,13 +41,13 @@ function Reload() {
 }
 
 function OnGUI() {
-	GUI.Box(Rect(Screen.width - 100,20,100,80),"");
-	GUI.Label(Rect(Screen.width - 100,35,90,20),"Ammo:"+Ammo);
-	GUI.Label(Rect(Screen.width - 100,20,90,20),"Health"+PlayerHealth.currentHealth);
+	GUI.Box(Rect(Screen.width - 100,0,100,80),"");
+	GUI.Label(Rect(Screen.width - 100,-3,90,20),"Ammo:"+Ammo);
+	GUI.Label(Rect(Screen.width - 100,10,90,20),"Health: "+PlayerHealth.currentHealth);
 	
 	if(empty) {
 		GUI.contentColor = Color.red;
-		GUI.Label(Rect(Screen.width - 100,50,90,20),"RELOAD");
+		GUI.Label(Rect(Screen.width - 100,25,90,20),"RELOAD");
 	}
 }
 @script ExecuteInEditMode()

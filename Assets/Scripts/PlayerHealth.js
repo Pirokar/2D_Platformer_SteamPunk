@@ -16,9 +16,3 @@ function Update () {
 		Application.LoadLevel ("GameOver");
 	}
 }
-
-function OnGUI() {
-	if(GUI.Button (Rect(Screen.width - 100,10,100,20), "Status")){
-		bool = !bool;
-	}
-}

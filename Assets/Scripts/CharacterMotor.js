@@ -71,6 +71,9 @@ enum MovementTransferOnJump {
 class CharacterMotorJumping {
 	// Can the character jump?
 	var enabled : boolean = true;
+	
+	// Can the character double jump?
+	var doubleenabled = true;
 
 	// How high do we jump when pressing jump and letting go immediately
 	var baseHeight : float = 1.0;
