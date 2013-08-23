@@ -48,7 +48,7 @@ function OnGUI() {
 	
 	if(empty) {
 		GUI.contentColor = Color.red;
-		GUI.Label(Rect(Screen.width - 100,25,90,20),"RELOAD");
+		GUI.Label(Rect(Screen.width - 100,35,90,20),"RELOAD");
 	}
 }
 @script ExecuteInEditMode()
