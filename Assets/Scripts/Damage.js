@@ -1,7 +1,15 @@
-﻿var damage : int = 25;
-var player : GameObject;
+﻿var player : GameObject;
 
-function OnTriggerEnter(player : Collider) {
-	player.gameObject.GetComponent(PlayerHealth).currentHealth -= damage;
-	Debug.Log(player.gameObject.GetComponent(PlayerHealth).currentHealth);
+function OnTriggerEnter (player : Collider) {
+	if(player.tag == "Player") {
+		if(SteamSystem.currentSteams==0) {
+			Debug.Log("DEAD");
+			SteamSystem.currentSteams--;
+		}
+		else {
+			player.gameObject.GetComponent(SteamSystem).currentSteams = 0;
+			Debug.Log("OOPS");
+		}
+		Destroy(gameObject);
+	}
 }

@@ -2,5 +2,10 @@
 
 function OnTriggerEnter (hit : Collider) {
 	Destroy(player.gameObject);
-	Application.LoadLevel("main_scene");
+	Lives.currentLives--;
+	if(Lives.currentLives>=0) {
+		SteamSystem.currentSteams = 1;
+		Firearm.ammo = 30;
+		Application.LoadLevel("main_scene");
+	}
 }

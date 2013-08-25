@@ -1,4 +1,4 @@
-﻿//startPosition : Vector3 = this.transform.position;
+﻿//var startPosition = this.transform.position;
 var MovingLength : int = 100;
 var tempLives : int = Lives.currentLives;
 static var x : int = 0;
@@ -8,7 +8,7 @@ static var pause : boolean = false;
 function Update () {
 	if(Time.timeScale!=0) {
 		if (x<=MovingLength) {
-			transform.position = transform.position + a*(new Vector3 (0, 0, 0.05));
+			transform.position += a*(new Vector3 (0, 0.05, 0));
 			x = x + a*1;
 		}
 		if (x==MovingLength||x==0)
