@@ -1,4 +1,5 @@
 ﻿var Projectile: Transform;
+var upProjectile : Transform;
 var fireRate: float = 0.5;
 private var nextFire: float = 1.0;
 static var ammo: int = 30;
@@ -20,7 +21,10 @@ function LateUpdate () {
 function Fire() {
 	audio.PlayOneShot(gunfire);
 	nextFire = Time.time + fireRate;
-	var shot = Instantiate(Projectile, transform.position, Quaternion.identity);
+	if(SteamSystem.currentSteams>40)
+		var shot = Instantiate(upProjectile, transform.position,Quaternion.identity);
+	else
+		shot = Instantiate(Projectile, transform.position, Quaternion.identity);
 	shot.rigidbody.AddForce(transform.forward*4000);
 	ammo--;
 }
