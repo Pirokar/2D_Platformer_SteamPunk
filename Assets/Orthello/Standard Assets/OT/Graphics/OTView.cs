@@ -346,7 +346,7 @@ public class OTView : MonoBehaviour
             	camera.orthographic = true;
 			CheckViewSize();
 			if (camera.near!=0)
-            	camera.near = 0;
+            	camera.near =-1000;
 			if (camera.far!= cameraRange)				
             	camera.far = cameraRange;				
 			if (OT.world == OT.World.WorldSide2D)

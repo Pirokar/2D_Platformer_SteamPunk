@@ -14,8 +14,12 @@ function Update() {
 		renderTime = Time.time + renderRate;
 		this.togglePause = 0.0;
 	}
-	if(RenderMesh)
+	if(RenderMesh) {
 		myMeshRenderer.enabled = true;
-	if(!RenderMesh)
+		gameObject.GetComponent("Halo").enabled = true;
+	}
+	if(!RenderMesh) {
 		myMeshRenderer.enabled = false;
+		gameObject.GetComponent("Halo").enabled = false;
+	}
 }

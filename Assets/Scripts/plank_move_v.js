@@ -1,4 +1,4 @@
-﻿var MovingLength : int = 100;
+﻿var MovingLength : int = 200;
 static var x : int;
 static var a : int;
 
@@ -10,7 +10,7 @@ function Start() {
 function Update () {
 	if(Time.timeScale!=0) {
 		if (x<=MovingLength) {
-			transform.position += a*(Vector3 (0, 0.05, 0));
+			transform.position += a*(Vector3 (0, 2, 0));
 			x = x + a*1;
 		}
 		if (x==MovingLength||x==0)
@@ -20,6 +20,6 @@ function Update () {
 
 function OnTriggerStay(coll : Collider) {
 	if(coll.tag == "Player") {
-		coll.transform.position += a*(Vector3(0, 0.07, 0));
+		coll.transform.position += a*(Vector3(0, 2.8, 0));
 	}
 }

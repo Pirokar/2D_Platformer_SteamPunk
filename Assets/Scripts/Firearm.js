@@ -26,6 +26,6 @@ function Fire() {
 		var shot = Instantiate(upProjectile, transform.position,Quaternion.identity);
 	else
 		shot = Instantiate(Projectile, transform.position, Quaternion.identity);
-	shot.rigidbody.AddForce(transform.forward*4000);
+	shot.rigidbody.AddForce(transform.forward*40000);
 	ammo--;
 }

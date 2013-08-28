@@ -5,11 +5,11 @@ var fireRate : float;
 private var lastShotTime : float;
 static var x : float = 0;
 static var a : int = 1;
-var MovingLength : int = 100;
+var MovingLength : int;
 var Health : float = 5;
 
 function Update () {
-	if(targetToLookAt && Vector3.Distance(targetToLookAt.position,transform.position) < 15) {
+	if(targetToLookAt && Vector3.Distance(targetToLookAt.position,transform.position) < 600) {
 		var rotate = Quaternion.LookRotation(targetToLookAt.position - transform.position);
 		transform.rotation = Quaternion.Slerp(transform.rotation,rotate,Time.deltaTime + rotationSpeed);
 		var delayTime : int = Time.time;
@@ -21,7 +21,7 @@ function Update () {
 	else {
 		transform.rotation = Quaternion.identity;
 		if (x<=MovingLength) {
-			transform.position += a*(Vector3 (0.05, 0, 0));
+			transform.position += a*(Vector3 (1, 0, 0));
 			x = x + a*1;
 		}
 		if (x==MovingLength||x==0)
@@ -31,6 +31,6 @@ function Update () {
 
 function Fire () {
 	var bullet = Instantiate(bullet, transform.Find("BulletSpawn").transform.position, Quaternion.identity);
-	bullet.rigidbody.AddForce(transform.forward*500);	
+	bullet.rigidbody.AddForce(transform.forward*20000);	
 	lastShotTime = Time.time;
 }
