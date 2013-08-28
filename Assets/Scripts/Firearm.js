@@ -5,6 +5,7 @@ private var nextFire: float = 1.0;
 static var ammo: int = 30;
 var ammoLimit : int = 99;
 var gunfire: AudioClip;
+var steamsToUpgrade : int;
 
 function Awake() {
 	ammo = 30;
@@ -21,7 +22,7 @@ function LateUpdate () {
 function Fire() {
 	audio.PlayOneShot(gunfire);
 	nextFire = Time.time + fireRate;
-	if(SteamSystem.currentSteams>40)
+	if(SteamSystem.currentSteams>=steamsToUpgrade)
 		var shot = Instantiate(upProjectile, transform.position,Quaternion.identity);
 	else
 		shot = Instantiate(Projectile, transform.position, Quaternion.identity);

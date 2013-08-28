@@ -6,6 +6,7 @@ private var lastShotTime : float;
 static var x : float = 0;
 static var a : int = 1;
 var MovingLength : int = 100;
+var Health : float = 5;
 
 function Update () {
 	if(targetToLookAt && Vector3.Distance(targetToLookAt.position,transform.position) < 15) {
