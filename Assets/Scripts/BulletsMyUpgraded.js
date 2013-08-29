@@ -7,8 +7,8 @@ function Update () {
 
 function OnTriggerEnter(player:Collider) {
 	if(player.tag == "Enemy") {
-		if(player.gameObject.GetComponent(ImmobileAI).Health>1)
-			player.gameObject.GetComponent(ImmobileAI).Health-=2;
+		if(player.gameObject.GetComponent(MobileAI).Health>1)
+			player.gameObject.GetComponent(MobileAI).Health-=2;
 		else {
 			for(var i = 0; i < 5; i++) {
 				var floorSteam = Instantiate(steam, transform.position, Quaternion.identity);

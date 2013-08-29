@@ -7,38 +7,58 @@ public class Move : MonoBehaviour {
 	public Rigidbody ThisRigidpody; 
 	public int speed = 5; 
 	public int JumpSpeed = 8; 
-	public bool Jumping; 
-	public GameObject Anim;
+	public bool Jumping;
+	public bool pressed;
+	float timeOfJump;
+	public float AiTime;
+	public bool isAiWait;
 	
-	
-	//_animationFrameset 
 	void Start () {
 		Player = (GameObject)this.gameObject; 
-		ThisRigidpody = (Rigidbody)this.rigidbody; 
+		ThisRigidpody = (Rigidbody)this.rigidbody;
+		pressed = true;
+		AiTime = Time.time;
+		
 	} 
 	void Update(){
-		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) { 
+		if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+				pressed = true;
+				GetComponentInChildren<OTAnimatingSprite>()._flipHorizontal = false;
+				GetComponentInChildren<OTAnimatingSprite>().animationFrameset = "move";
+		}
+		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
 			Player.transform.position += Player.transform.right * speed * Time.deltaTime;
-			//gameObject.GetComponent(OTSprite)._flipHorizontal = false;
 		} 
+		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
+			pressed = true;
+			GetComponentInChildren<OTAnimatingSprite>()._flipHorizontal = true;
+			GetComponentInChildren<OTAnimatingSprite>().animationFrameset = "move";
+		}
 	  	if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) { 
-	 		Player.transform.position -= Player.transform.right * speed * Time.deltaTime;
-			//gameObject.GetComponent(OTSprite)._flipHorizontal = true;
-	  	} 
+			Player.transform.position -= Player.transform.right * speed * Time.deltaTime;
+		} 
 	 	if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) {
-			//OTAnimatingSprite._animationFrameset = "run";
-			
+			pressed = true;
+			GetComponentInChildren<OTAnimatingSprite>().animationFrameset = "move";
 			if (Jumping == false) { 
 				Jumping = true; 
-				//OTAnimatingSprite._animationFrameset = "move";
 	 			ThisRigidpody.AddForce(Player.transform.up * JumpSpeed, ForceMode.Impulse);
-				
-				
 	 		} 
 	  	}
+		if(Input.anyKey == false && pressed && !isAiWait) {
+			GetComponentInChildren<OTAnimatingSprite>().animationFrameset = "run";
+			pressed = false;
+		}
+	
+		if(Losing_Steams.damaged == true) {
+			isAiWait = true;
+			AiTime = Time.time;
+			GetComponentInChildren<OTAnimatingSprite>().animationFrameset = "ai";
+			
+		}
 	}
 		
-	void OnCollisionEnter(Collision collis) { 
+	void OnCollisionEnter(Collision collis) {
 		if (collis.gameObject) { 
 			Jumping = false; 
 		} 
