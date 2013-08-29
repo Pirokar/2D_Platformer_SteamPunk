@@ -8,22 +8,32 @@ public class Move : MonoBehaviour {
 	public int speed = 5; 
 	public int JumpSpeed = 8; 
 	public bool Jumping; 
+	public GameObject Anim;
 	
-	void Start () { 
+	
+	//_animationFrameset 
+	void Start () {
 		Player = (GameObject)this.gameObject; 
 		ThisRigidpody = (Rigidbody)this.rigidbody; 
 	} 
 	void Update(){
 		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) { 
-			Player.transform.position += Player.transform.forward * speed * Time.deltaTime; 
+			Player.transform.position += Player.transform.right * speed * Time.deltaTime;
+			//gameObject.GetComponent(OTSprite)._flipHorizontal = false;
 		} 
 	  	if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) { 
-	 		Player.transform.position -= Player.transform.forward * speed * Time.deltaTime; 
+	 		Player.transform.position -= Player.transform.right * speed * Time.deltaTime;
+			//gameObject.GetComponent(OTSprite)._flipHorizontal = true;
 	  	} 
-	 	if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) { 
+	 	if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) {
+			//OTAnimatingSprite._animationFrameset = "run";
+			
 			if (Jumping == false) { 
 				Jumping = true; 
-	 			ThisRigidpody.AddForce(Player.transform.up * JumpSpeed, ForceMode.Impulse); 
+				//OTAnimatingSprite._animationFrameset = "move";
+	 			ThisRigidpody.AddForce(Player.transform.up * JumpSpeed, ForceMode.Impulse);
+				
+				
 	 		} 
 	  	}
 	}

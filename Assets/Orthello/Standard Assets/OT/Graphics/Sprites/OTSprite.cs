@@ -10,7 +10,7 @@ public class OTSprite : OTObject
     // Editor settings
     //-----------------------------------------------------------------------------
     
-    public bool _flipHorizontal = false;
+    public static bool _flipHorizontal = false;
     
     public bool _flipVertical = false;
     
