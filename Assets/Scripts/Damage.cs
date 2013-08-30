@@ -8,7 +8,6 @@ public class Damage : MonoBehaviour {
 
 	void OnTriggerEnter (Collider player) {
 		if(player.tag == "Player") {
-			Debug.Log("ANAL");
 			if(SteamSystem.currentSteams==0) {
 				Debug.Log("DEAD");
 				SteamSystem.currentSteams--;
@@ -16,7 +15,6 @@ public class Damage : MonoBehaviour {
 			else {
 				LosingSteams.bulletsOnMoment = SteamSystem.currentSteams;
 				LosingSteams.damaged = true;
-				Debug.Log("ANAL");
 				SteamSystem.currentSteams = 0;
 				
 			}

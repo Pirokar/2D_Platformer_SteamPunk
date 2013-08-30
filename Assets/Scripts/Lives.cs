@@ -2,14 +2,8 @@
 using System.Collections;
 
 public class Lives : MonoBehaviour {
-	public static int maxLives;
-	public static int currentLives;
-
-	
-	void Start () {
-		maxLives = 3;
-		currentLives = 3;
-	}
+	public static int maxLives =3 ;
+	public static int currentLives = 3;
 	
 	void OnGUI () {
 		if(currentLives < 0) {

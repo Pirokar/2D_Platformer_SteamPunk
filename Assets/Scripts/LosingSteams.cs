@@ -7,6 +7,7 @@ public class LosingSteams : MonoBehaviour {
 	public GameObject steam;
 	public static bool damaged;
 	public static int bulletsOnMoment;
+	public static bool damageAnim;
 
 	void Start () {
 		damaged = false;
@@ -14,6 +15,7 @@ public class LosingSteams : MonoBehaviour {
 	
 	void Update () {
 		if(damaged) {
+			damageAnim = true;
 			GameObject floorSteam;
 			for(int i = 0; i < bulletsOnMoment; i++) {
 				floorSteam = Instantiate(steam, LosingSteamsSpawn.transform.position, Quaternion.identity) as GameObject;
