@@ -3,11 +3,10 @@ using System.Collections;
 
 public class MobileAI : MonoBehaviour {
 	
-	public GameObject BulletSpawn;
-	public static float x = 0;
-	public static int a = 1;
+	public float x = 0;
+	public int a = 1;
 	public int MovingLength;
-	public static float Health = 5f;
+	public int Health = 5;
 
 	private OTAnimatingSprite _mySprite;
 	public OTAnimatingSprite MySprite {
@@ -22,11 +21,12 @@ public class MobileAI : MonoBehaviour {
 	void Start() {
 		x = 0;
 		a = 1;
-		Health = 5f;
+		Health = 5;
+		
 	}
 	
 	void Update () {
-		if(EnemyFire.isFire == false && Time.timeScale == 1){
+		if(GetComponentInChildren<EnemyFire>().isisFire == false && Time.timeScale == 1){
 			if (x <= MovingLength) {
 				transform.position += a*(new Vector3 (1, 0, 0));
 				x = x + a*1;

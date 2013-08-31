@@ -1,6 +1,6 @@
 ﻿var MovingLength : int = 200;
-static var x : int;
-static var a : int;
+private var x : int;
+private var a : int;
 
 function Start() {
 	x = 0;

@@ -7,7 +7,8 @@ public class EnemyFire : MonoBehaviour {
 	public int rotationSpeed = 1;
 	public float fireRate;
 	private float lastShotTime;
-	public static bool isFire;
+	public bool isFire;
+	public bool isisFire;
 	public float delay;
 	public GameObject bulletPrefab;
 	public float offset = 5f;
@@ -18,7 +19,9 @@ public class EnemyFire : MonoBehaviour {
 	}
 	
 	void Update () {
-		if(targetToLookAt && Vector3.Distance(targetToLookAt.position,transform.position) < 600) {
+		if(targetToLookAt && Vector3.Distance(targetToLookAt.position,transform.position) < 600 && (targetToLookAt.position.y - transform.position.y < 50 && transform.position.y - targetToLookAt.position.y < 50)) {
+			if(!isisFire)
+				isisFire = true;
 			if(!isFire && targetToLookAt.position.x - transform.position.x < 0)
 				if(playerSprite._flipHorizontal)
 					playerSprite._flipHorizontal = !playerSprite._flipHorizontal;
@@ -27,7 +30,6 @@ public class EnemyFire : MonoBehaviour {
 					playerSprite._flipHorizontal = !playerSprite._flipHorizontal;
 			if(!isFire)
 				playerSprite.animationFrameset = "stay";
-			isFire = true;
 			if(targetToLookAt.position.x - transform.position.x < 0) {
 				Quaternion rotate = Quaternion.LookRotation(transform.position - targetToLookAt.position);
 				transform.rotation = Quaternion.Slerp(transform.rotation,rotate,Time.deltaTime + rotationSpeed);
@@ -41,11 +43,14 @@ public class EnemyFire : MonoBehaviour {
 			if (lastShotTime + fireRate < Time.time) {
 				Fire ();
 			}
+			isFire = true;
 		}
 		else {
+			if(isisFire)
+				isisFire = false;
 			if (targetToLookAt.position.x - transform.position.x < 0) {
 				
-				if(isFire && !playerSprite._flipHorizontal && MobileAI.a>0) 
+				if(isFire && !playerSprite._flipHorizontal && GameObject.Find ("Enemy0").GetComponent<MobileAI>().a>0) 
 					playerSprite._flipHorizontal = !playerSprite._flipHorizontal;
 				if(isFire && playerSprite._flipHorizontal) {
 					playerSprite._flipHorizontal = !playerSprite._flipHorizontal;
@@ -55,7 +60,7 @@ public class EnemyFire : MonoBehaviour {
 			}
 			else {
 				
-				if(isFire && playerSprite._flipHorizontal && MobileAI.a<0) 
+				if(isFire && playerSprite._flipHorizontal && GameObject.Find ("Enemy0").GetComponent<MobileAI>().a<0) 
 					playerSprite._flipHorizontal = !playerSprite._flipHorizontal;
 				if(isFire && !playerSprite._flipHorizontal) {
 					playerSprite._flipHorizontal = !playerSprite._flipHorizontal;

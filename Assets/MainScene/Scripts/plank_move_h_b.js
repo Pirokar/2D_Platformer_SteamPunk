@@ -4,7 +4,7 @@ private var a : int;
 
 function Start() {
 	x = 0;
-	a = 1;
+	a = -1;
 }
 
 function Update () {
@@ -13,7 +13,7 @@ function Update () {
 			transform.position += a*(Vector3 (2, 0, 0));
 			x = x + a*1;
 		}
-		if (x==MovingLength||x==0)
+		if (x==-MovingLength||x==0)
 			a*=-1;
 	}
 }

@@ -6,13 +6,11 @@ public class PauseMenu : MonoBehaviour {
 	public bool exit;
 	public bool paused;
 
-	// Use this for initialization
 	void Start () {
 		exit = false;
 		paused = false;
 	}
 	
-	// Update is called once per frame
 	void Update () {
 		if(Input.GetButtonDown("Pause")) {
 			if(!paused) {
