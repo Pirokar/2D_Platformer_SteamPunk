@@ -39,61 +39,53 @@ public class Move : MonoBehaviour {
 	}
 	
 	void Update(){
-		if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+		if(Time.timeScale == 1) {
+			if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.RightArrow)) {
+					pressed = true;
+					MySprite._flipHorizontal = false;
+					if(MySprite.looping)
+						MySprite.animationFrameset = "move";
+			}
+			if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+				Player.transform.position += Player.transform.right * speed * Time.deltaTime;
+			} 
+			if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
 				pressed = true;
-				MySprite._flipHorizontal = false;
+				MySprite._flipHorizontal = true;
 				if(MySprite.looping)
 					MySprite.animationFrameset = "move";
-		}
-		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
-			Player.transform.position += Player.transform.right * speed * Time.deltaTime;
-		} 
-		if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow)) {
-			pressed = true;
-			MySprite._flipHorizontal = true;
-			if(MySprite.looping)
-				MySprite.animationFrameset = "move";
-		}
-	  	if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) { 
-			Player.transform.position -= Player.transform.right * speed * Time.deltaTime;
-		} 
-	 	if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) {
-			pressed = true;
-			if(MySprite.looping)
-				MySprite.animationFrameset = "move";
-			if (Jumping == false) { 
-				Jumping = true; 
-	 			ThisRigidpody.AddForce(Player.transform.up * JumpSpeed, ForceMode.Impulse);
-	 		} 
-	  	}
-		if(Input.anyKey == false && pressed) {
-			if(MySprite.looping)
-				MySprite.animationFrameset = "run";
-			pressed = false;
-		}
+			}
+		  	if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) { 
+				Player.transform.position -= Player.transform.right * speed * Time.deltaTime;
+			} 
+		 	if (Input.GetButtonDown("Jump") || Input.GetKeyDown(KeyCode.UpArrow)) {
+				pressed = true;
+				if(MySprite.looping)
+					MySprite.animationFrameset = "move";
+				if (Jumping == false) { 
+					Jumping = true; 
+		 			ThisRigidpody.AddForce(Player.transform.up * JumpSpeed, ForceMode.Impulse);
+		 		} 
+		  	}
+			if(Input.anyKey == false && pressed) {
+				if(MySprite.looping)
+					MySprite.animationFrameset = "run";
+				pressed = false;
+			}
+		
+			if(LosingSteams.damageAnim == true) {
+				MySprite.looping = false;
+				MySprite.animationFrameset = "ai";
+				MySprite.numberOfPlays = 10;
+				LosingSteams.damageAnim = false;
 	
-		if(LosingSteams.damageAnim == true) {
-			MySprite.looping = false;
-			MySprite.animationFrameset = "ai";
-			MySprite.numberOfPlays = 10;
-			LosingSteams.damageAnim = false;
-
+			}
 		}
 	}
 		
 	void OnCollisionEnter(Collision collis) {
-		if (collis.gameObject.tag == "Spikes") { 
-			if(SteamSystem.currentSteams==0) {
-				Debug.Log("DEAD");
-				SteamSystem.currentSteams--;
-			}
-			else {
-				LosingSteams.bulletsOnMoment = SteamSystem.currentSteams;
-				LosingSteams.damaged = true;
-				SteamSystem.currentSteams = 0;
-				
-			}
-		} 
+		if (collis.gameObject.tag == "Spikes")
+			SteamSystem.currentSteams = -1;	
 		if (collis.gameObject) { 
 			Jumping = false; 
 		} 

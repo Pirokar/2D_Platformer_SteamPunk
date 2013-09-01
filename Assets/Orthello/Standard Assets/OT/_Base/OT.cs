@@ -1846,27 +1846,29 @@ public class OT : MonoBehaviour
         List<OTObject> _foundObjects = new List<OTObject>();
         List<RaycastHit> _hits = new List<RaycastHit>();
 
-		for (int i=0; i<inputCameras.Length; i++)
-		{
-	        Ray ray = inputCameras[i].ScreenPointToRay(screenPoint);
-	        hits = Physics.RaycastAll(ray, 5000);
-	        if (hits.Length > 0)
-	        {
-	            for (int h = hits.Length - 1; h >= 0; h--)
-	            {
-	                OTObject o = hits[h].collider.gameObject.GetComponent<OTObject>();
-	                if (_ignoreObjects.Contains(o)) continue;
-	                if (o != null)
-	                {
-	                    if ((_checkObjects.Count > 0 && _checkObjects.Contains(o)) || _checkObjects.Count == 0)
-	                    {
-	                        _foundObjects.Add(o);
-	                        _hits.Add(hits[h]);
-	                    }
-	                }
-	            }
-	        }				
-		}
+//		for (int i=0; i<inputCameras.Length; i++)
+//		{
+//	        Ray ray = inputCameras[i].ScreenPointToRay(screenPoint);
+//	        hits = Physics.RaycastAll(ray, 5000);
+//	        if (hits.Length > 0)
+//	        {
+//	            for (int h = hits.Length - 1; h >= 0; h--)
+//	            {
+//	                OTObject o = hits[h].collider.gameObject.GetComponent<OTObject>();
+//	                if (_ignoreObjects.Contains(o)) continue;
+//	                if (o != null)
+//	                {
+//	                    if ((_checkObjects.Count > 0 && _checkObjects.Contains(o)) || _checkObjects.Count == 0)
+//	                    {
+//	                        _foundObjects.Add(o);
+//	                        _hits.Add(hits[h]);
+//	                    }
+//	                }
+//	            }
+//	        }
+//			if(inputCameras[i+1]==null)
+//				i++;
+//		}
 		
         hits = _hits.ToArray();
         return _foundObjects.ToArray();

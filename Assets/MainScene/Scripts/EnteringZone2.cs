@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class EnteringZone : MonoBehaviour {
+public class EnteringZone2 : MonoBehaviour {
 	
 	public static int steamsToOpen = 1;
 	static public bool done;
@@ -20,7 +20,7 @@ public class EnteringZone : MonoBehaviour {
 				if(SteamSystem.currentSteams<steamsToOpen)
 					needSteams = true;
 				else {
-					Application.LoadLevelAdditive("FirstLogic");
+					Application.LoadLevelAdditive("ThirdLogic");
 					Time.timeScale = 0;
 				}
 	}

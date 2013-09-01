@@ -15,13 +15,14 @@ public class Objective : MonoBehaviour {
 	void Update() {
 		if(Time.time - time > 4f)
 			task = false;
+		transform.Rotate(new Vector3(0,0,0.3f));
 	}
 	
 	void OnTriggerEnter(Collider player) {
 		if(player.tag == "Player") {
 			Time.timeScale = 0;
 			objectiveCompleted = true;
-			renderer.enabled = false;
+			GetComponentInChildren<MeshRenderer>().enabled = false;
 		}
 	}
 	
