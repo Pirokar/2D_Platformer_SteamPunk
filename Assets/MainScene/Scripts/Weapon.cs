@@ -12,7 +12,6 @@ public class Weapon : MonoBehaviour
 	public float fireRate;
 	private float lastShotTime;
 	public static int ammo = 30;
-	public AudioClip gunfire;
 	public static int steamsToUpgrade = 30;
 	public OTAnimatingSprite playerSprite;
 	public float offset = 500f;
@@ -22,7 +21,7 @@ public class Weapon : MonoBehaviour
 	}
 	
 	void Update () {
-		if(Input.GetButton ("Fire1")) {
+		if(Input.GetKeyDown(KeyCode.LeftControl)) {
 			if(ammo > 0)
 				Fire ();
 			else 
@@ -33,7 +32,6 @@ public class Weapon : MonoBehaviour
 	void Fire () {
 		if (lastShotTime + fireRate < Time.time) {
 			lastShotTime = Time.time;
-			audio.PlayOneShot (gunfire);
 			GameObject shot;
 			if (SteamSystem.currentSteams >= steamsToUpgrade) {
 				AudioSource.PlayClipAtPoint(pick, transform.position, 0.3f);
