@@ -12,10 +12,12 @@ public class BulletsMy : MonoBehaviour {
 	}
 	
 	void OnTriggerEnter(Collider player) {
+		if(player.tag == "Thing") {
+			Destroy(gameObject);
+		}
 		if(player.tag == "Enemy") {
-			if(player.gameObject.GetComponent<MobileAI>().Health>1) {
+			if(player.gameObject.GetComponent<MobileAI>().Health>1)
 				player.gameObject.GetComponent<MobileAI>().Health--;
-			}
 			else {
 				for(int i = 0; i < 5; i++) {
 					floorSteam = Instantiate(steam, transform.position, Quaternion.identity) as GameObject;

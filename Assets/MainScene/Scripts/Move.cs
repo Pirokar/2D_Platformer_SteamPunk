@@ -82,8 +82,21 @@ public class Move : MonoBehaviour {
 	}
 		
 	void OnCollisionEnter(Collision collis) {
+		if (collis.gameObject.tag == "Spikes") { 
+			if(SteamSystem.currentSteams==0) {
+				Debug.Log("DEAD");
+				SteamSystem.currentSteams--;
+			}
+			else {
+				LosingSteams.bulletsOnMoment = SteamSystem.currentSteams;
+				LosingSteams.damaged = true;
+				SteamSystem.currentSteams = 0;
+				
+			}
+		} 
 		if (collis.gameObject) { 
 			Jumping = false; 
 		} 
 	} 
+
 }
