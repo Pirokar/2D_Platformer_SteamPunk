@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnteringZone2 : MonoBehaviour {
 	
-	public static int steamsToOpen = 20;
+	public static int steamsToOpen = 1;
 	static public bool done;
 	private bool needSteams;
 	static public bool isBack;
